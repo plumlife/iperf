@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# NAME: iperf
+if [ ! -e Makefile ]; then
+ .${SRC}/configure --host=${ARCH_TUPLE} --prefix=/usr
+fi
+
+make CC="${CROSS_COMPILE}gcc -I./include ${CFLAGS} ${LDFLAGS} " O=${OBJ} DESTDIR=${DESTDIR} || exit 1
+make install
